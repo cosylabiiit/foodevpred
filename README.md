@@ -3,15 +3,14 @@
 A sequence-based machine learning pipeline for classifying food-derived proteins as extracellular vesicle (EV) cargo.
 
 - Predicts whether a food-derived protein is EV cargo, classifying it into one of three categories: **Non-EV**, **Milk EV**, or **Plant EV**.
-- Sequences are represented using embeddings from the **ProtT5** protein language model (1024-dim).
+- Sequences are represented using embeddings from the **ProtT5** protein language model.
 - Feature selection: top 384 features via LightGBM-gain importance.
 - Two-tier stacked ensemble — base models: **LightGBM, SVM (RBF), MLP, KNN (cosine)**; meta-learner: **ExtraTrees**.
 - Pipeline covers dataset curation (UniProt fetch + CD-HIT redundancy filtering), stratified train/test split, PLM feature extraction, model/feature selection, and a leakage-audited stacking ensemble (nested CV overfitting audit included).
-- Developed at COSYLAB, IIIT Delhi.
+
 
 ## Notebooks
 
-Run in the order listed below.
 
 | File | Stage |
 |---|---|
