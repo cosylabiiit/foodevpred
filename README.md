@@ -9,7 +9,7 @@ A sequence-based machine learning pipeline for classifying food-derived proteins
 - Pipeline covers dataset curation (UniProt fetch + CD-HIT redundancy filtering), stratified train/test split, PLM feature extraction, model/feature selection, and a leakage-audited stacking ensemble (nested CV overfitting audit included).
 
 
-## Notebooks
+## src
 
 
 | File | Stage |
@@ -22,7 +22,7 @@ A sequence-based machine learning pipeline for classifying food-derived proteins
 | `stack-base.ipynb` | Base models + stacked ensemble |
 | `standalone-check.ipynb` | Final pipeline fit + reproducibility check |
 
-## Data
+## data
 
 - `features_prott5_10639.csv`, `features_prott5_2660.csv` — ProtT5 embeddings
 - `split_index.csv` — train/test split index
