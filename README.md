@@ -1,10 +1,29 @@
 # FoodEVPred
-A Sequence-Based Computational Framework for Predicting Food-Derived Extracellular Vesicle Cargo Proteins.
 
-- FoodEVPred is the first sequence-based machine learning tool for predicting whether a food-derived protein is extracellular vesicle (EV) cargo.
-- The model is trained on a curated dataset of 11,731 protein sequences, refined to 6,356 non-redundant sequences after preprocessing.
-- Proteins are classified into three categories: Milk EV, Plant EV, and Non-EV.
-- Sequences are represented using embeddings from the ProtT5 pre-trained protein language model, capturing functional, structural, and stability-related context.
-- FoodEVPred employs a two-tier stacked ensemble: Logistic Regression, SVM, and MLP as base classifiers, with XGBoost as the meta-learner.
-- The model achieves an overall accuracy of 88.95 ± 1.26%, specificity of 94.24 ± 0.67%, and AUC of 97.32 ± 0.37%.
-- FoodEVPred is deployed as a freely accessible web server for real-time and batch-mode predictions, supporting the prioritization of food-derived EV cargo proteins explored as carriers for doxorubicin prodrugs, peptide therapeutics, and antibiotics.
+A sequence-based machine learning pipeline for classifying food-derived proteins as extracellular vesicle (EV) cargo.
+
+- Predicts whether a food-derived protein is EV cargo, classifying it into one of three categories: **Non-EV**, **Milk EV**, or **Plant EV**.
+- Sequences are represented using embeddings from the **ProtT5** protein language model (1024-dim).
+- Feature selection: top 384 features via LightGBM-gain importance.
+- Two-tier stacked ensemble — base models: **LightGBM, SVM (RBF), MLP, KNN (cosine)**; meta-learner: **ExtraTrees**.
+- Pipeline covers dataset curation (UniProt fetch + CD-HIT redundancy filtering), stratified train/test split, PLM feature extraction, model/feature selection, and a leakage-audited stacking ensemble (nested CV overfitting audit included).
+- Developed at COSYLAB, IIIT Delhi.
+
+## Notebooks
+
+Run in the order listed below.
+
+| File | Stage |
+|---|---|
+| `data-curation-cdhit.ipynb` | UniProt fetch + CD-HIT redundancy filtering |
+| `test-train-split.ipynb` | Stratified train/test split |
+| `feature-embeddings.ipynb` | PLM (ProtT5) feature embeddings |
+| `plm.ipynb` | Model/PLM benchmarking |
+| `feature-opt.ipynb` | Feature optimization |
+| `stack-base.ipynb` | Base models + stacked ensemble |
+| `standalone-check.ipynb` | Final pipeline fit + reproducibility check |
+
+## Data
+
+- `features_prott5_10639.csv`, `features_prott5_2660.csv` — ProtT5 embeddings
+- `split_index.csv` — train/test split index
